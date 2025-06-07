@@ -7,9 +7,12 @@ import com.zlc.api.filter.CheckFilterContext;
 import com.zlc.api.form.SingleSendForm;
 import com.zlc.api.util.R;
 import com.zlc.api.vo.ResultVO;
+import com.zlc.common.constant.RabbitMQConstants;
 import com.zlc.common.enums.ExceptionEnums;
+import com.zlc.common.model.SnowFlakeUtil;
 import com.zlc.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,8 +38,8 @@ public class SmsController {
     private CheckFilterContext checkFilterContext;
 
 
-//    @Autowired
-//    private SnowFlakeUtil snowFlakeUtil;
+    @Autowired
+    private SnowFlakeUtil snowFlakeUtil;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -82,11 +85,11 @@ public class SmsController {
         checkFilterContext.check(submit);
 
         //========================基于雪花算法生成唯一id，并添加到StandardSubmit对象中，并设置发送时间=========================================
-//        submit.setSequenceId(snowFlakeUtil.nextId());
+        submit.setSequenceId(snowFlakeUtil.nextId());
 //        submit.setSendTime(LocalDateTime.now());
 
         //=========================发送到MQ，交给策略模块处理=========================================
-//        rabbitTemplate.convertAndSend(RabbitMQConstants.SMS_PRE_SEND,submit,new CorrelationData(submit.getSequenceId().toString()));
+        rabbitTemplate.convertAndSend(RabbitMQConstants.SMS_PRE_SEND,submit,new CorrelationData(submit.getSequenceId().toString()));
 
         // =====================没有问题，返回接收成功===============================
         return R.ok();
