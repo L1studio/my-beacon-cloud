@@ -22,3 +22,16 @@ server:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+
+# 在调用方模块的配置文件中添加
+feign:
+  client:
+    config:
+      default:  # 全局默认配置
+        connectTimeout: 50000   # 连接超时 50 秒
+        readTimeout: 300000     # 读取超时 300 秒
+
+      # 针对 beacon-cache 服务的特殊配置（会覆盖全局配置）
+      beacon-cache:
+        readTimeout: 600000     # 单独设置此服务的读取超时为 600 秒

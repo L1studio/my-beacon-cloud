@@ -1,4 +1,4 @@
-package com.zlc.common.model;
+package com.zlc.common.utils;
 
 import com.zlc.common.enums.ExceptionEnums;
 import com.zlc.common.exception.ApiException;

@@ -9,7 +9,7 @@ import com.zlc.api.util.R;
 import com.zlc.api.vo.ResultVO;
 import com.zlc.common.constant.RabbitMQConstants;
 import com.zlc.common.enums.ExceptionEnums;
-import com.zlc.common.model.SnowFlakeUtil;
+import com.zlc.common.utils.SnowFlakeUtil;
 import com.zlc.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -25,8 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-
-import static com.google.common.net.HttpHeaders.X_FORWARDED_FOR;
 
 @RestController
 @RequestMapping("/sms")

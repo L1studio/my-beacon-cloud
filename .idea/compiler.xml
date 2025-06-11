@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="beacon-cache" />
         <module name="beacon-test" />
+        <module name="beacon-strategy" />
         <module name="beacon-api" />
         <module name="beacon-common" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="beacon-api" options="-parameters" />
       <module name="beacon-cache" options="-parameters" />
       <module name="beacon-common" options="-parameters" />
+      <module name="beacon-strategy" options="-parameters" />
       <module name="beacon-test" options="-parameters" />
     </option>
   </component>

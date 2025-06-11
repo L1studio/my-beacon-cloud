@@ -31,6 +31,11 @@
             <artifactId>spring-context</artifactId>
             <version>5.3.12</version>
         </dependency>
+        <dependency>
+            <groupId>com.janeluo</groupId>
+            <artifactId>ikanalyzer</artifactId>
+            <version>2012_u6</version>
+        </dependency>
     </dependencies>
 
 </project>
