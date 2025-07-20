@@ -122,6 +122,15 @@ public class CacheController {
         return result;
     }
 
+//    @PostMapping(value = "/cache/zadd/{key}/{score}/{member}")
+//    public Boolean saddStr(@PathVariable(value = "key") String key,
+//                        @PathVariable(value = "score") Long score,
+//                        @PathVariable(value = "member") Object member) {
+//        log.info("【缓存模块】 zaddLong方法，存储key = {}，存储score = {}，存储value = {}", key, score, member);
+//        Boolean result = redisClient.zAdd(key, member, score);
+//        return result;
+//    }
+
     @GetMapping(value = "/cache/zrangebyscorecount/{key}/{start}/{end}")
     public int zRangeByScoreCount(@PathVariable(value = "key") String key,
                                   @PathVariable(value = "start") Double start,

@@ -95,6 +95,11 @@ public class StandardSubmit implements Serializable {
      */
     private int reportState;
 
+    /**
+     * 短信发送失败的原因是什么，记录在当前属性
+     */
+    private String errorMsg;
+
     // =============================================================================
     /**
      *  获取到的客户端真实IP地址

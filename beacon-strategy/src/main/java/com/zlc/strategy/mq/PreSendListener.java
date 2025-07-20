@@ -2,6 +2,7 @@ package com.zlc.strategy.mq;
 
 import com.rabbitmq.client.Channel;
 import com.zlc.common.constant.RabbitMQConstants;
+import com.zlc.common.exception.StrategyException;
 import com.zlc.common.model.StandardSubmit;
 import com.zlc.strategy.filter.StrategyFilterContext;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +27,18 @@ public class PreSendListener {
     @RabbitListener(queues = RabbitMQConstants.SMS_PRE_SEND)
     public void listen(StandardSubmit submit, Message message, Channel channel) throws IOException {
         log.info("【策略模块-接收消息】 接收到接口模块发送的消息 submit = {}",submit);
+        System.out.println("strat:"+System.currentTimeMillis());
         // 处理业务…………
         try {
             filterContext.strategy(submit);
             log.info("【策略模块-消费完毕】手动ack");
             channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
-        } catch (IOException e) {
+        } catch (StrategyException e) {
             e.printStackTrace();
-            log.error("【策略模块-消费失败】凉凉~~~");
+            log.info("【策略模块-消费失败】校验未通过  ，msg={}",e.getMessage());
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+        }finally {
+            System.out.println("end:"+System.currentTimeMillis());
         }
     }
 }
