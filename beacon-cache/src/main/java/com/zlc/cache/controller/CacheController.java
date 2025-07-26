@@ -131,7 +131,7 @@ public class CacheController {
 //        return result;
 //    }
 
-    @GetMapping(value = "/cache/zrangebyscorecount/{key}/{start}/{end}")
+/*    @GetMapping(value = "/cache/zrangebyscorecount/{key}/{start}/{end}")
     public int zRangeByScoreCount(@PathVariable(value = "key") String key,
                                   @PathVariable(value = "start") Double start,
                                   @PathVariable(value = "end") Double end) {
@@ -141,7 +141,20 @@ public class CacheController {
             return values.size();
         }
         return 0;
+    }*/
+
+    @GetMapping(value = "/cache/zrangebyscorecount/{key}/{start}/{end}")
+    public int zRangeByScoreCount(@PathVariable(value = "key") String key,
+                                  @PathVariable(value = "start") Double start,
+                                  @PathVariable(value = "end") Double end) {
+        log.info("【缓存模块】 zRangeByScoreCount方法，查询key = {},start = {},end = {}", key, start, end);
+Set<ZSetOperations.TypedTuple<Object>> values = redisTemplate.opsForZSet().rangeByScoreWithScores(key,start, end);
+        if (values != null) {
+            return values.size();
+        }
+        return 0;
     }
+
 
     @DeleteMapping(value = "/cache/zremove/{key}/{member}")
     public void zRemove(@PathVariable(value = "key") String key, @PathVariable(value = "member") String member) {

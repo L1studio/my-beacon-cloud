@@ -25,6 +25,7 @@ import java.time.ZoneOffset;
 @Slf4j
 public class LimitOneMinuteStrategyFilter implements StrategyFilter {
 
+
     private final String UTC = "+8";
 
     private final long ONE_MINUTE = 60 * 1000 - 1;
@@ -38,10 +39,12 @@ public class LimitOneMinuteStrategyFilter implements StrategyFilter {
 
     @Override
     public void strategy(StandardSubmit submit) {
+        // 判断短信类型不是验证码类的，直接结束方法
         if(submit.getState() != SmsConstant.CODE_TYPE){
             return;
         }
-        log.info("【策略模块-一分钟限流策略】  开始校验ing………………");
+        log.info("【策略模块-一分钟限流策略】 一分钟限流开始校验………………");
+
         //1、基于submit获取短信的发送时间
         LocalDateTime sendTime = submit.getSendTime();
         //2、基于LocalDateTime获取到时间的毫秒值
@@ -66,8 +69,7 @@ public class LimitOneMinuteStrategyFilter implements StrategyFilter {
 
         //6、基于zrangebyscore查询1分钟直接，是否只有当前查询的发送短信信息
         long start = sendTimeMilli - ONE_MINUTE;
-        int count = cacheClient.zRangeByScoreCount(key, Double.parseDouble(start + ""),
-                Double.parseDouble(sendTimeMilli + ""));
+        int count = cacheClient.zRangeByScoreCount(key, Double.parseDouble(start + ""), Double.parseDouble(sendTimeMilli + ""));
 
         //7、如果大于等于2条短信信息，达到了60s一条的短信限流规则，直接告辞。
         if(count > 1){
@@ -83,4 +85,3 @@ public class LimitOneMinuteStrategyFilter implements StrategyFilter {
         log.info("【策略模块-一分钟限流策略】  一分钟限流规则通过，可以发送！");
     }
 }
-
