@@ -16,8 +16,6 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class PreSendListener {
-
-
     /**
      * 整个策略模块的校验
      */
