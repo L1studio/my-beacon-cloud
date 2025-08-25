@@ -8,13 +8,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ClientBusiness {
-  public String getIpAddress() {
-    return ipAddress;
-  }
+// todo 一开始用的
+//  public String getIpAddress() {
+//    return ipAddress;
+//  }
 
+  public List<String> getIpAddress() {
+    String ips = ipAddress;
+    if(!StringUtils.isEmpty(ips)){
+      return Arrays.asList(ips.split(","));
+    }
+    return null;
+  }
   private long id;
   private String corpname;
   private String apikey;
+//  private List<String> ipAddress;
   private String ipAddress;
   private long isCallback;
   private String callbackUrl;

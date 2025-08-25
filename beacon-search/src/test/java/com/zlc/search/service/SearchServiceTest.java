@@ -23,8 +23,8 @@ public class SearchServiceTest {
         searchService.index("sms_submit_log_2023","4","{\"clientId\": 4}");
     }
 
-//    @Test
-//    public void exists() throws IOException {
-//        System.out.println(searchService.exists("sms_submit_log_2023", "2349236478326478236478"));
-//    }
+    @Test
+    public void exists() throws IOException {
+        System.out.println(searchService.exists("sms_submit_log_2025", "368076443118206976"));
+    }
 }

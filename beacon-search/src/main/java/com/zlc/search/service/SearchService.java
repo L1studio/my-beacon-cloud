@@ -24,7 +24,7 @@ public interface SearchService {
      * @return  true：代表存在  false：代表不存在
      * @throws IOException
      */
-//    boolean exists(String index,String id)  throws IOException;
+    boolean exists(String index,String id)  throws IOException;
 
     /**
      * 修改文档信息
@@ -33,7 +33,7 @@ public interface SearchService {
      * @param doc    要修改的key-value集合
      * @throws IOException
      */
-//    void update(String index, String id, Map<String,Object> doc)throws IOException;
+   void update(String index, String id, Map<String,Object> doc)throws IOException;
 
     /**
      * 根据页面的条件查询短信记录信息

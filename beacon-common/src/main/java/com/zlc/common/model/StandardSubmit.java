@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 在接口模块-策略模块-短信网关模块需要做校验和封装的POJO类对象
@@ -36,7 +37,8 @@ public class StandardSubmit implements Serializable {
     /**
      * 客户端的ip白名单
      */
-    private String ip;
+//  todo   private String ip;
+    private List<String> ip;
 
     /**
      * 客户业务内的uid
