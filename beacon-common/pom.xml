@@ -53,6 +53,13 @@
             <version>2.12.5</version>
         </dependency>
 
+        <!--        SpringMVC的参数校验。-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.1.5.Final</version>
+        </dependency>
+
     </dependencies>
 
 </project>

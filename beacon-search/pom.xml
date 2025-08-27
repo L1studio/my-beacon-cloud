@@ -55,12 +55,7 @@
             <artifactId>elasticsearch</artifactId>
             <version>7.6.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!--  测试组件  -->
+        <!--        测试组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
